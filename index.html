@@ -1,9 +1,148 @@
-<footer style="position:relative;z-index:1;text-align:center;padding:28px 16px 20px;margin-top:10px;border-top:1px solid rgba(255,255,255,0.06)">
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>📈Smart Routine For 🫵 2nd Semester 'kh'</title>
+  <meta name="description" content="Real-time command center for 2nd semester agriculture students: live class tracking, assignments, GPA tools, and weekly schedule." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Ambient background orbs -->
+  <div class="orbs" aria-hidden="true">
+    <span class="orb orb-1"></span>
+    <span class="orb orb-2"></span>
+    <span class="orb orb-3"></span>
+  </div>
+
+  <main class="container">
+    <!-- HERO HEADER -->
+    <header class="glass hero">
+      <div class="hero-left">
+        <p class="hero-eyebrow" id="dateLine">—</p>
+        <h1 class="hero-title">
+          <span class="aurora">Smart Routine</span><br />
+          Real Time Update 📉
+        </h1>
+        <p class="hero-status" id="statusLine">Loading…</p>
+      </div>
+      <div class="hero-right">
+        <div class="poetic-clock" id="poeticClock" aria-label="Live time poem">
+          <span class="poetic-words" id="poeticWords"></span>
+        </div>
+        <div class="clock-mini mono" id="clock">--:--:-- --</div>
+        <div class="clock-label bn">🫵এই তোমরা কেমন আছো? ঠিকমতো পড়ালেখা কর তো ? পড়তে হবে, নকল আর হবে না 🥲</div>
+      </div>
+    </header>
+
+    <!-- 🧠 SMART FOCUS MODE — Time-aware AI message -->
+    <section class="glass focus-card" id="focusCard">
+      <div class="focus-head">
+        <span class="focus-icon" id="focusIcon">🤖</span>
+        <span class="focus-tag" id="focusTag">Goal </span>
+      </div>
+      <h2 class="focus-message bn" id="focusMessage">Loading 🚧</h2>
+      <p class="focus-sub bn" id="focusSub"></p>
+      <!-- Class progress bar (shows only during a class) -->
+      <div class="focus-progress-wrap" id="focusProgressWrap" hidden>
+        <div class="focus-progress-info">
+          <span class="bn" id="focusProgressLabel">ক্লাস অগ্রগতি</span>
+          <span class="mono" id="focusProgressPct">0%</span>
+        </div>
+        <div class="progress"><div class="progress-bar" id="focusProgressBar"></div></div>
+        <div class="focus-progress-time mono" id="focusProgressTime"></div>
+      </div>
+
+      <!-- Next-day mini routine preview (shows after hours / weekend) -->
+      <div class="next-day-preview" id="nextDayPreview" hidden>
+        <div class="next-day-head">
+          <span class="next-day-icon">📅</span>
+          <span class="next-day-title bn" id="nextDayTitle">আগামী দিনের রুটিন</span>
+        </div>
+        <div class="next-day-list" id="nextDayList"></div>
+      </div>
+    </section>
+
+    <!-- MAIN GRID -->
+    <section class="grid">
+      <div class="col-main">
+        <!-- PRIORITY PANEL -->
+        <article class="glass priority" id="priorityCard">
+          <div class="priority-head">
+            <span class="badge" id="priorityBadge">Top Priority</span>
+            <span class="badge subtle" id="priorityCountdown"></span>
+          </div>
+          <h2 class="priority-title" id="prioritySubject">—</h2>
+          <p class="priority-meta" id="priorityMeta"></p>
+          <div class="progress"><div class="progress-bar" id="priorityProgress"></div></div>
+        </article>
+
+        <!-- SCHEDULE SWITCHER -->
+        <article class="glass">
+          <div class="schedule-head">
+            <h3>📅 ক্লাস রুটিন</h3>
+            <div class="tabs" role="tablist">
+              <button class="tab active" data-view="today">আজ</button>
+              <button class="tab" data-view="tomorrow">আগামীকাল</button>
+              <button class="tab" data-view="week">সপ্তাহ</button>
+            </div>
+          </div>
+          <div id="scheduleBody" class="schedule-body"></div>
+        </article>
+      </div>
+
+      <!-- ASIDE: ASSIGNMENTS (READ-ONLY) -->
+      <aside class="col-aside">
+        <article class="glass">
+          <div class="assign-head">
+            <h3>📝 অ্যাসাইনমেন্ট</h3>
+            <a class="admin-link" href="admin.html" title="Assignment Add">⚙️</a>
+          </div>
+          <ul id="assignList" class="assign-list"></ul>
+          <p class="assign-note bn"> আ্যসাইন্টমেন্ট লিখলে লেখ, না লিখলে এখন ও সময় আছে লেখ </p>
+        </article>
+      </aside>
+    </section>
+
+    <footer style="position:relative;z-index:1;text-align:center;padding:28px 16px 20px;margin-top:10px;border-top:1px solid rgba(255,255,255,0.06)">
   <div style="max-width:900px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:6px">
-    <div style="font-family:'Orbitron',sans-serif;font-size:11px;letter-spacing:3px;color:#334155">DESIGNED & DEVELOPED BY</div>
-    <div style="font-family:'Orbitron',sans-serif;font-size:18px;font-weight:900;background:linear-gradient(135deg,#22d3ee,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent">AHAD</div>
-    <div style="font-size:12px;color:#475569;font-family:'Noto Sans Bengali',sans-serif">২য় সেমিস্টার · Agriculture Training Institute, Rangpur</div>
+    
+    <div style="font-family:'Orbitron',sans-serif;font-size:14px;letter-spacing:3px;color:#22d3ee">DESIGNED BY</div>
+    
+    <a href="https://facebook.com/AlBadhonAhad" target="_blank" style="text-decoration:none; display:inline-block;">
+      <div style="font-family:'Orbitron',sans-serif;font-size:18px;font-weight:900;background:linear-gradient(135deg,#22d3ee,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent">AHAD</div>
+    </a>
+    
+    <div style="font-size:12px;color:#975569;font-family:'Noto Sans Bengali',sans-serif">2nd Semester · Agriculture Training Institute, Rangpur</div>
     <div id="last-updated" style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#334155;margin-top:4px"></div>
     <div style="font-size:10px;color:#1e293b;margin-top:2px;letter-spacing:1px">© 2026 · All Rights Reserved</div>
   </div>
-</footer>
+    </footer>
+      
+  </main>
+
+  <!-- FLOATING GPA CALCULATOR -->
+  <button class="fab" id="gpaToggle" title="GPA Calculator">🎓</button>
+  <div class="gpa-modal" id="gpaModal" hidden>
+    <div class="glass gpa-card">
+      <div class="gpa-head">
+        <h3>🎓 GPA ক্যালকুলেটর</h3>
+        <button class="btn-icon" id="gpaClose">✕</button>
+      </div>
+      <div id="gpaRows" class="gpa-rows"></div>
+      <div class="form-row">
+        <button class="btn ghost" id="gpaAdd">+ কোর্স</button>
+        <button class="btn primary" id="gpaCalc">হিসাব করুন</button>
+      </div>
+      <div class="gpa-result" id="gpaResult">GPA: —</div>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+  </html>
